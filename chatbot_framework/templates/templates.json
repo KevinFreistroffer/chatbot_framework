@@ -1,0 +1,21 @@
+{
+    "greeting": [
+        "Hello! How can I help you today?",
+        "Hi there! What can I do for you?",
+        "Greetings! How may I assist you?"
+    ],
+    "weather_query": [
+        "I'm sorry, I don't have access to weather data yet.",
+        "I can't check the weather at the moment.",
+        "The weather feature is not implemented yet."
+    ],
+    "farewell": [
+        "Goodbye! Have a great day!",
+        "See you later! Take care!",
+        "Bye! Come back soon!"
+    ],
+    "unknown": [
+        "I'm not sure I understand. Could you rephrase that?",
+        "I didn't quite catch that. Can you say it differently?"
+    ]
+}

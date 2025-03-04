@@ -1,0 +1,11 @@
+[
+    {"text": "Hello", "intent": "greeting"},
+    {"text": "Hi there", "intent": "greeting"},
+    {"text": "Good morning", "intent": "greeting"},
+    {"text": "What's the weather like?", "intent": "weather_query"},
+    {"text": "Tell me the weather forecast", "intent": "weather_query"},
+    {"text": "Is it going to rain today?", "intent": "weather_query"},
+    {"text": "Goodbye", "intent": "farewell"},
+    {"text": "See you later", "intent": "farewell"},
+    {"text": "Bye", "intent": "farewell"}
+]
