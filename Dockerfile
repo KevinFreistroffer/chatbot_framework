@@ -1,25 +1,49 @@
-# Use an official Python runtime as a parent image
-FROM python:3.11-slim
+# Use a more stable base image
+FROM python:3.8-slim-buster
 
-# Set the working directory in the container
-WORKDIR /
+# Set the working directory
+WORKDIR /app
 
-# Copy the requirements file into the container
+# Install system dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    gcc \
+    g++ \
+    git \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV PIP_NO_CACHE_DIR=1
+ENV PIP_DEFAULT_TIMEOUT=200
+
+# Upgrade pip
+RUN pip install --no-cache-dir --upgrade pip
+
+# Install packages in stages to better handle dependencies
 COPY requirements.txt .
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+# Install torch first
+RUN pip install --no-cache-dir torch
 
-# Copy the chatbot_framework package first
-COPY . /chatbot_framework
+# Install transformers and sentence-transformers
+RUN pip install --no-cache-dir transformers==4.46.3 sentence-transformers>=2.2.0
 
-# Copy the API files
-COPY . /chatbot_api
+# Install the rest of the requirements
+RUN pip install --no-cache-dir \
+    fastapi>=0.68.0 \
+    uvicorn>=0.15.0 \
+    pydantic>=1.8.0 \
+    python-dotenv>=0.19.0 \
+    huggingface-hub \
+    numpy>=1.24.0 \
+    regex>=2023.0.0
 
-# Set the Python path to include the root directory
-ENV PYTHONPATH=/
+# Copy the application code
+COPY . .
 
-# Make port 8000 available to the world outside this container
+# Make port 8000 available
 EXPOSE 8000
 
 # Run the application
