@@ -89,4 +89,4 @@ async def handle_message(message):
     return result['response']
 """ 
 
-print(Chatbot.__init__)
+print(Chatbot.__doc__)
