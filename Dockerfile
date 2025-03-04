@@ -2,7 +2,7 @@
 FROM python:3.8-slim-buster
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /
 
 # Install system dependencies
 RUN apt-get update && \
@@ -47,4 +47,4 @@ COPY . .
 EXPOSE 8000
 
 # Run the application
-CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "chatbot_api.main:app", "--host", "0.0.0.0", "--port", "8000"]
